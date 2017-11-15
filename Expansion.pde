@@ -1,4 +1,4 @@
-//this program makes expanding rings, each in a random location
+//this program draws shapes in random locations and expands their frames
 
 import java.util.Random;
 
@@ -38,11 +38,11 @@ void makeRings() {
   
   startSize += 5;    //make the rings expand
 }
-
+/*
 void reset() {
   //reset x and y to new random values and reset startSize, so you don't
   //need new variables every time
   x = random(0+startSize, width-startSize);
   y = random(0+startSize, height-startSize);
   startSize = 10;
-}
+}*/
