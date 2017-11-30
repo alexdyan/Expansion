@@ -6,10 +6,10 @@ import processing.serial.*;
 import java.util.Random;
 
 Serial myPort;
-int val = 1;
+int val = 0;
 
-float[] x = new float[9];
-float[] y = new float[9];
+float[] x = new float[10];
+float[] y = new float[10];
 float diameter;
 float wide;
 float tall;
@@ -31,13 +31,13 @@ void draw() {
   noFill();
   strokeWeight(5);
   
-  if (val == 0) {    //if you press any of the buttons...
+  if (val == 1) {
     makeCircles();
-    makeTriangles();
-    makeQuads();
-    makeRectangles();//FIX THESE COORDINATES, MAKE IT NOT [4]
     makeOvals();
   }
+  if (val == 2) makeTriangles();
+  if (val == 3) makeQuads();
+  if (val == 4) makeRectangles();
   restart();
 }
 
@@ -64,33 +64,34 @@ void makeQuads() {      //make 3 slightly different quad shapes
   quad(x[4], y[4], x[5], y[5], x[6], y[6], x[7], y[7]);
   quad(x[4]+10, y[4]+10, x[5]+10, y[5]+10, x[6]+10, y[6]+10, x[7]+10, y[7]+10);
   quad(x[4]-25, y[4]-25, x[5]-25, y[5]-25, x[6]-25, y[6]-25, x[7]-25, y[7]-25);
-  x[4]-=3;
-  x[5]+=2; y[5]-=2;     //make the quads expand
-  y[6]+=2;
-  x[7]+=1; y[7]+=3;
+  x[4]-=3;              //make the quads expand
+  x[5]+=2; y[5]-=2;
+  x[6]+=1; y[6]+=1;
+  x[7]-=2; y[7]+=3;
 }
 
 void makeRectangles() {  //make 3 slightly different rectangles
   stroke(255, 155, 155);
-  rect(x[4], y[4], wide, tall);
-  rect(x[4]-20, y[4]-20, wide, tall);
-  rect(x[4]-50, y[4]-50, wide, tall);
-  y[4]-=1;
-  wide += 3;             //make the rectangles expand
-  tall += 2;
+  rect(x[8], y[8], wide, tall);
+  rect(x[8]-20, y[8]-20, wide, tall);
+  rect(x[8]-50, y[8]-50, wide, tall);
+  x[8]-=2;               //make the rectangles expand
+  y[8]-=1;
+  wide += 2;
+  tall += 1;
 }
 
 void makeOvals() {    //make 3 slightly different ovals
   stroke(245, 155, 255);
-  ellipse(x[8], y[8], tall, wide);
-  ellipse(x[8]+25, y[8], tall-15, wide+40);
-  ellipse(x[8], y[8]-20, tall-20, wide+15);
+  ellipse(x[9], y[9], tall, wide);
+  ellipse(x[9]+25, y[9], tall-15, wide+40);
+  ellipse(x[9], y[9]-20, tall-20, wide+15);
   tall += 2;          //make the ovals expand
   wide += 5;
 }
 
 void restart() {
-  if (diameter > width*2) {  //the shapes are off the screen,
+  if (diameter > width) {  //the shapes are off the screen,
     if (val == 0) {          //and a button is pressed
       setCoordinates();      //reset their coordinates
     }
