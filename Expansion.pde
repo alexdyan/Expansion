@@ -13,6 +13,7 @@ float[] y = new float[10];
 float diameter;
 float wide;
 float tall;
+float size;
 
 void setup() {
   String portName = Serial.list()[0];
@@ -91,9 +92,12 @@ void makeOvals() {    //make 3 slightly different ovals
 }
 
 void restart() {
-  if (diameter > width) {  //the shapes are off the screen,
-    if (val == 0) {          //and a button is pressed
-      setCoordinates();      //reset their coordinates
+  for (int i = 0; i < x.length-1; i++) {
+    size = x[i+1] - x[i];
+    
+    if (size > width || diameter > width || wide > width) {
+      if (val != 0)          //if the shapes are big enough and a sensor
+        setCoordinates();    //is hit, reset the coordinates
     }
   }
 }
