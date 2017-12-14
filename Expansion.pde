@@ -19,7 +19,7 @@ void setup() {
   String portName = Serial.list()[0];
   myPort = new Serial(this, portName, 9600);
 
-  size(800, 800);
+  size(1500, 900);
   frameRate(120);
   setCoordinates();
 }
@@ -95,7 +95,7 @@ void restart() {
   for (int i = 0; i < x.length-1; i++) {
     size = x[i+1] - x[i];
     
-    if (size > width || diameter > width || wide > width) {
+    if (size > height || diameter > height || wide > height) {
       if (val != 0)          //if the shapes are big enough and a sensor
         setCoordinates();    //is hit, reset the coordinates
     }
